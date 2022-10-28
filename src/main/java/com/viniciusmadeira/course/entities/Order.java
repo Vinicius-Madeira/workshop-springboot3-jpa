@@ -88,6 +88,17 @@ public class Order implements Serializable {
 		return items;
 	}
 
+	public Double getTotal() {
+		if (items.isEmpty()) {
+			throw new IllegalStateException("Can't make an order without items");
+		}
+		double sum = 0.0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
